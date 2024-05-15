@@ -2,11 +2,6 @@ name: Sanity Checks
 
 on:
   workflow_dispatch:
-    inputs:
-      who:
-        description: 'Who to greet'
-        required: true
-        type: string
 
 jobs:
   sanity-debian:
@@ -16,5 +11,3 @@ jobs:
       - uses: actions/checkout@v4
       - id: foo
         uses: ChristopheClermont/metricshub-sanity-action@main
-        with:
-          who-to-greet: ${{ inputs.who || 'Mona the Octocat'}}
