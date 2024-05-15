@@ -1,0 +1,20 @@
+name: Sanity Checks
+
+on:
+  workflow_dispatch:
+    inputs:
+      who:
+        description: 'Who to greet'
+        required: true
+        type: string
+
+jobs:
+  sanity-debian:
+    runs-on: ubuntu-latest
+    name: Performs sanity test on MetricsHub archive on Debian
+    steps:
+      - uses: actions/checkout@v4
+      - id: foo
+        uses: ChristopheClermont/metricshub-sanity-action@v1-dev
+        with:
+          who-to-greet: ${{ inputs.who || 'Mona the Octocat'}}
