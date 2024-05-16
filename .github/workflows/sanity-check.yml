@@ -1,13 +1,19 @@
 name: Sanity Checks
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: Build
+    types: completed
 
 jobs:
   sanity-debian:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Performs sanity test on MetricsHub archive on Debian
     steps:
-      - uses: actions/checkout@v4
-      - id: foo
-        uses: ChristopheClermont/metricshub-sanity-action@main
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: ./build_output
+      - uses: ChristopheClermont/metricshub-sanity-action@main
