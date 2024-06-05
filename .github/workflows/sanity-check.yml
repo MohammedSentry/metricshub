@@ -11,6 +11,8 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Performs sanity test on MetricsHub archive on Debian
     steps:
+      - name: print debug
+        run: echo ${{ github.event.workflow_run.id }}
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
