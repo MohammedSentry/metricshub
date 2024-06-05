@@ -17,8 +17,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           github-token: ${{ secrets.GH_PAT }}
-          repository: ChristopheClermont/metricshub
+          repository: MohammedSentry/metricshub
           run-id: ${{ github.event.workflow_run.id }}
           pattern: metricshub-linux-package-*
           path: build-output
-      - uses: ChristopheClermont/metricshub-sanity-action@main
+      - uses: MohammedSentry/metricshub-sanity-action@main
